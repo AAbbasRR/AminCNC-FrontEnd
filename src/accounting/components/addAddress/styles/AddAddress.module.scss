@@ -1,0 +1,32 @@
+.dialogTitle {
+    text-align: center;
+}
+
+.dialogContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem !important;
+}
+
+.receiverInputs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.imReceiverCheckBox {
+    margin-top: -1rem !important;
+    margin-left: auto !important;
+}
+
+.dialogActions {
+    flex-direction: row-reverse;
+}
+
+.dialogButton {
+    color: #212121 !important;
+}

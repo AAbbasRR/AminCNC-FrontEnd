@@ -1,0 +1,30 @@
+.main {
+    overflow: hidden;
+}
+
+.container {
+    max-width: 100% !important;
+}
+
+.component {
+    margin-top: 3rem !important;
+}
+
+.products {
+    margin-top: 2rem !important;
+    padding: 0 1rem;
+}
+
+.pagination {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    margin-top: 3rem !important;
+}
+
+.pagination ul li button {
+    background-color: rgba(149, 208, 211, 0.3) !important;
+}
+
+.pagination ul li button:hover {
+    background-color: rgba(112, 175, 179, 0.3) !important;
+}

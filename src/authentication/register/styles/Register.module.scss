@@ -1,0 +1,175 @@
+.main {
+    overflow: hidden !important;
+    height: 93vh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.authBox {
+    width: 30rem;
+    height: 35rem;
+    background-color: rgb(251, 253, 255);
+    border-radius: 1rem !important;
+    box-shadow: 0 0.7rem 0.9rem rgba(21, 21, 21, 0.4);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.authBGTop {
+    position: absolute;
+    top: -23%;
+    right: 33%;
+    transform: rotate(63deg);
+    width: 100%;
+    height: 47rem;
+    opacity: 0.25;
+}
+
+.authBGBot{
+    position: absolute;
+    bottom: -25%;
+    left: 65%;
+    transform: rotate(245deg);
+    width: 100%;
+    height: 47rem;
+    opacity: 0.25;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 3rem 2rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formControll{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.input{
+    width: 100% !important;
+}
+
+.submitBtn{
+    margin-right: auto !important;
+}
+
+.footer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.footerTitle {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.link {
+    color: #56459d;
+    margin-right: 0.3rem;
+}
+
+.link:hover {
+    color: #cecece;
+    transition: .4s;
+}
+
+@media screen and (max-width: 1200px) {
+    .authBox {
+        width: 25rem !important;
+        height: 30rem !important;
+    }
+    .authBGTop {
+        top: -25%;
+        right: 37%;
+        transform: rotate(67deg);
+        height: 42rem;
+    }
+    .authBGBot {
+        bottom: -25%;
+        left: 58%;
+        transform: rotate(245deg);
+        height: 42rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .authBox {
+        width: 20rem !important;
+        height: 25rem !important;
+    }
+    .authBGTop {
+        top: -32%;
+        right: 44%;
+        transform: rotate(75deg);
+        height: 37rem;
+    }
+    .authBGBot {
+        bottom: -27%;
+        left: 48%;
+        transform: rotate(245deg);
+        height: 36rem;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .content {
+        padding: 2rem 1rem 1rem 1rem;
+    }
+    .authBGTop {
+        top: -45%;
+        right: 50%;
+        transform: rotate(80deg);
+    }
+    .authBGBot {
+        bottom: -40%;
+        left: 52%;
+        transform: rotate(253deg);
+    }
+}
+
+@media screen and (max-width: 250px) {
+    .authBGTop {
+        top: -48%;
+    }
+    .authBGBot {
+        bottom: -44%;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .authBox {
+        width: 25rem !important;
+        height: 30rem !important;
+    }
+    .authBGTop {
+        top: -25%;
+        right: 37%;
+        transform: rotate(67deg);
+        height: 42rem;
+    }
+    .authBGBot {
+        bottom: -25%;
+        left: 58%;
+        transform: rotate(245deg);
+        height: 42rem;
+    }
+}

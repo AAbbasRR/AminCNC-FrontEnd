@@ -1,0 +1,111 @@
+.spaceHeader {
+    height: 2rem;
+}
+
+.navbarHeader {
+    background-color: #ffffff !important;
+    color: black !important;
+    padding: 0.75rem 3rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.55) !important;
+}
+
+.toolBarNavbar {
+    min-height: fit-content !important;
+    justify-content: space-between !important;
+    position: relative !important;
+}
+
+.humbergerMenuIcon {
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translate(0px, -45%) !important;
+    display: none !important;
+}
+
+.menuItemsBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menuToolBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menuItem {
+    padding: 0rem 0.75rem;
+    box-sizing: border-box;
+    border-left: 0.5px solid #95d0d3;
+    color: #56459d;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menuItem:last-child {
+    border-left: 0px;
+}
+
+.menuItem:hover {
+    color: #95d0d3;
+    transition: 0.3s;
+}
+
+.menuToolItem {
+    padding: 0rem 0.75rem;
+    box-sizing: border-box;
+    color: #56459d;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem !important;
+}
+
+.menuIcon {
+    color: #ffcc00;
+    margin-left: 5px;
+}
+
+.badgeBox {
+    color: #56459d;
+    transition: 0.3s;
+}
+
+.badgeBox:hover {
+    color: #95d0d3;
+    transition: 0.3s;
+}
+
+/* responsive */
+@media screen and (max-width: 900px) {
+    .navbarHeader {
+        padding: 0.75rem 1rem;
+    }
+
+    .toolBarNavbar {
+        justify-content: flex-end !important;
+        padding: 0 !important;
+    }
+
+    .appBarContainer {
+        max-width: 100% !important;
+        border-radius: 0%;
+    }
+
+    .humbergerMenuIcon {
+        display: block !important;
+    }
+}
+
+.listItemResponsive {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: right !important;
+}
+
+.drawerIcon {
+    color: #252525 !important;
+}

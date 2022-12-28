@@ -1,0 +1,63 @@
+@import url("./Fonts.css");
+
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  direction: rtl !important;
+  font-family: IRANSans_Normal !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p {
+  color: #424750;
+}
+
+.App {
+  text-align: center;
+  position: relative;
+  min-height: 100vh;
+}
+
+.backGroundImage {
+  background-image: url("../../assets/images/background.png");
+  background-color: #ffffff;
+  background-repeat: repeat;
+  position: absolute;
+  top: 0;
+  z-index: -99999;
+  height: 100%;
+  width: 100%;
+}
+
+.subtitle,
+.title {
+  font-family: IRANSans_Bold !important;
+}
+
+.link {
+  font-family: IRANSans_Normal !important;
+}
+
+.caption {
+  font-family: IRANSans_Medium !important;
+}
+
+.link {
+  text-decoration: none;
+}
+
+/* material ui */
+.muirtl-lqq3n7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: rgba(86, 69, 157, 0.3) !important;
+}
