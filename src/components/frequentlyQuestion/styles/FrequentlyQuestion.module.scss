@@ -1,0 +1,23 @@
+.accordingContainer {
+    border: 0.25px solid rgba(229, 231, 235, 0.8) !important;
+    border-radius: 0.4rem !important;
+    box-shadow: none !important;
+    background-color: #f9f9f9 !important;
+}
+
+.icon {
+    color: #95d0d3 !important;
+}
+
+.question {
+    // color: #56459d !important;
+    color: #424750 !important;
+}
+
+.answer {
+    color: #424750 !important;
+    font-weight: bold !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    text-align: justify !important;
+}

@@ -1,0 +1,88 @@
+.main {
+    overflow: hidden;
+}
+
+.container {
+    max-width: 100% !important;
+}
+
+.component {
+    margin-top: 3rem !important;
+}
+
+.content {
+    margin-top: 1.5rem !important;
+}
+
+.productDetailBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.title {
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 0.5px solid #424242;
+}
+
+.subcolor {
+    color: #808080 !important;
+    border-color: #808080 !important;
+    opacity: 0.7;
+}
+
+.productCountPrice {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem !important;
+}
+
+.productPrice {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.productActions{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.RemoveIconAction {
+    color: #d72323 !important;
+    transform: scaleX(-1);
+}
+
+.discountBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.selectedDiscount {
+    border-bottom: 1px solid red !important;
+    position: relative !important;
+}
+
+.selectedDiscount::before {
+    content: "\A";
+    border-style: solid;
+    border-width: 7px 10px 7px 0;
+    border-color: transparent red transparent transparent;
+    position: absolute;
+    right: -15px;
+    top: 3px;
+}

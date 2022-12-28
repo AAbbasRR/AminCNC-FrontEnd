@@ -1,0 +1,27 @@
+.price {
+    position: relative;
+    display: flex;
+    margin: 0 4px !important;
+}
+
+.priceDiscount {
+    color: red;
+}
+
+.priceDiscount::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    top: 38%;
+    left: 0;
+    border-top: 2px solid red !important;
+    color: red !important;
+}
+
+.mdSize {
+    font-size: .9rem !important;
+}
+
+.lgSize {
+    font-size: 1.3rem !important;
+}

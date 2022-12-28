@@ -1,0 +1,50 @@
+.newsletterBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.3rem;
+    text-align: center;
+    color: #fefefe;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputIconBox {
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.textField label {
+    color: #fefefe !important;
+}
+
+.textField div::before {
+    border-color: #fefefe !important;
+}
+
+.textField div:hover:before {
+    border-color: #fefefe !important;
+    border-width: 2px;
+}
+
+.textField div input {
+    color: #fefefe !important;
+}
+
+.textField div input::after {
+    border-color: #242946 !important;
+}
+
+.submitButton {
+    color: #fefefe !important;
+}

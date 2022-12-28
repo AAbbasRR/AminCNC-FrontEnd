@@ -1,0 +1,61 @@
+.stepContainer {
+    margin-top: 0.5em !important;
+}
+
+.stepItem {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.counter {
+    padding: 0.1rem 0.5rem;
+    background-color: rgba(149, 208, 211, 0.4);
+    color: #56459d;
+    border-radius: 50%;
+}
+
+.icon {
+    vertical-align: middle;
+    margin: 0.5rem auto;
+    height: 50px;
+    width: 50px;
+    background-image: url("../../../assets/images/icons.png");
+}
+
+.title {
+    color: #424750;
+    font-weight: bold !important;
+}
+
+.chooseProductIcon {
+    background-position: -123px -56px;
+}
+
+.registerIcon {
+    background-position: 110px 105px;
+}
+
+.submitOrderIcon {
+    background-position: 51px 55px;
+}
+
+.paymentIcon {
+    background-position: -16px 0px;
+}
+
+.deliveryIcon {
+    background-position: -12px 106px;
+}
+
+.sendData {
+    background-position: 55px 0px;
+}
+
+.sendData {
+    background-position: 55px 0px;
+}
+
+.priceAgreement{
+    background-position: -65px 55px;
+}
