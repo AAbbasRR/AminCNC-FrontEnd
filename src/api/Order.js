@@ -15,6 +15,16 @@ export const SubmitOrderAPI = (products, description, user_and_address_id, deliv
     },
 });
 
+export const CheckPaymentFactorOrderAPI = (status, authority) => ({
+    method: 'post',
+    url: `order/api/verifyPayment/`,
+    token: true,
+    data: {
+        status: status,
+        authority: authority,
+    },
+});
+
 export const EditOrderAPI = (tracking_code, description) => ({
     method: 'put',
     url: `order/api/edit/${tracking_code}/`,

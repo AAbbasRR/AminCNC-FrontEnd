@@ -10,11 +10,11 @@ import { useNavigate } from 'react-router-dom';
 
 import Price from '../price/Price';
 
-const Product = ({ title, link, description, image, price }) => {
+const Product = ({ title, link, description, image, price, category = null }) => {
     const history = useNavigate();
 
     const pushToSingleProduct = () => {
-        history(`/singleProduct/${link}`);
+        history(`/singleProduct/${link}${category ? '?category=' + category : ""}`);
     };
 
     return (

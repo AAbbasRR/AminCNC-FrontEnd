@@ -11,6 +11,8 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import PageLoader from '../../components/loader/PageLoader';
 import Navbar from '../../components/navbar/Navbar';
@@ -42,13 +44,22 @@ import { SiteOptionsAPI } from "../../api/Options";
 import CallApi from "../../functions/CallApi";
 
 const Home = () => {
+    const categoriesData = useSelector(state => state.CategoriesReducer);
+
     const [isLoading, setIsLoading] = useState(false);
     const [productData, setProductData] = useState(null);
     const [frequentlyQuestionData, setFrequentlyQuestionData] = useState(null);
     const [optionsData, setOptionsData] = useState(null);
+    const [categoriesLink, setCategoriesLink] = useState({
+        "vertical_tall": null,
+        "horizontal_tall": null,
+        "double1": null,
+        "double2": null
+    });
 
     useEffect(() => {
         getPageDatas();
+        fillCategoriesLink();
     }, []);
 
     const getPageDatas = async () => {
@@ -65,6 +76,14 @@ const Home = () => {
         } finally {
             setIsLoading(false);
         };
+    };
+    const fillCategoriesLink = () => {
+        setCategoriesLink({
+            "vertical_tall": categoriesData.find(category => category.location === "VTP"),
+            "horizontal_tall": categoriesData.find(category => category.location === "HTP"),
+            "double1": categoriesData.find(category => category.location === "DOP"),
+            "double2": categoriesData.find(category => category.location === "DTP")
+        });
     };
 
     return (
@@ -112,15 +131,23 @@ const Home = () => {
                                     <div className={classes.productCategories}>
                                         <div className={classes.horizontalCategoryBox}>
                                             <div className={classes.doubleCategoryBox}>
-                                                <LazyLoadImage src={double1} className={classes.categoryItem} />
-                                                <LazyLoadImage src={double2} className={classes.categoryItem} />
+                                                <Link to={categoriesLink.double1 ? `/products/?category=${categoriesLink.double1.slug}` : '#'}>
+                                                    <LazyLoadImage src={double1} className={classes.categoryItem} />
+                                                </Link>
+                                                <Link to={categoriesLink.double2 ? `/products/?category=${categoriesLink.double2.slug}` : '#'}>
+                                                    <LazyLoadImage src={double2} className={classes.categoryItem} />
+                                                </Link>
                                             </div>
                                             <div className={classes.singleCategoryBox}>
-                                                <LazyLoadImage src={horizontal} className={classes.categoryItem} />
+                                                <Link to={categoriesLink.horizontal_tall ? `/products/?category=${categoriesLink.horizontal_tall.slug}` : '#'}>
+                                                    <LazyLoadImage src={horizontal} className={classes.categoryItem} />
+                                                </Link>
                                             </div>
                                         </div>
                                         <div className={classes.verticalCategoryBox}>
-                                            <LazyLoadImage src={vertical} className={classes.categoryItem} />
+                                            <Link to={categoriesLink.vertical_tall ? `/products/?category=${categoriesLink.vertical_tall.slug}` : '#'}>
+                                                <LazyLoadImage src={vertical} className={classes.categoryItem} />
+                                            </Link>
                                         </div>
                                     </div>
                                 </Hidden>
@@ -128,15 +155,23 @@ const Home = () => {
                                     <div className={classes.responsiveProductCategories}>
                                         <div className={classes.responsiveTopCategories}>
                                             <div className={classes.responsiveDoubleCategoryBox}>
-                                                <LazyLoadImage src={double1} className={classes.categoryItem} />
-                                                <LazyLoadImage src={double2} className={classes.categoryItem} />
+                                                <Link to={categoriesLink.double1 ? `/products/?category=${categoriesLink.double1.slug}` : '#'}>
+                                                    <LazyLoadImage src={double1} className={classes.categoryItem} />
+                                                </Link>
+                                                <Link to={categoriesLink.double2 ? `/products/?category=${categoriesLink.double2.slug}` : '#'}>
+                                                    <LazyLoadImage src={double2} className={classes.categoryItem} />
+                                                </Link>
                                             </div>
                                             <div className={classes.responsiveVerticalCategoryBox}>
-                                                <LazyLoadImage src={vertical} className={classes.categoryItem} />
+                                                <Link to={categoriesLink.vertical_tall ? `/products/?category=${categoriesLink.vertical_tall.slug}` : '#'}>
+                                                    <LazyLoadImage src={vertical} className={classes.categoryItem} />
+                                                </Link>
                                             </div>
                                         </div>
                                         <div className={classes.responsiveBotCategories}>
-                                            <LazyLoadImage src={horizontal} className={classes.categoryItem} />
+                                            <Link to={categoriesLink.horizontal_tall ? `/products/?category=${categoriesLink.horizontal_tall.slug}` : '#'}>
+                                                <LazyLoadImage src={horizontal} className={classes.categoryItem} />
+                                            </Link>
                                         </div>
                                     </div>
                                 </Hidden>

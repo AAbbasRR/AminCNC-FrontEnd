@@ -12,7 +12,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import PageLoader from '../../components/loader/PageLoader';
 import Navbar from '../../components/navbar/Navbar';
@@ -23,11 +23,12 @@ import StepsOrdering from '../../components/stepsOrdering/StepsOrdering';
 import ToUp from '../../components/toUp/ToUp';
 import Footer from '../../components/footer/Footer';
 
-import { AllProductsAPI } from "../../api/Products";
+import { AllProductsAPI, GetCategoryProductsAPI } from "../../api/Products";
 import CallApi from "../../functions/CallApi";
 
 const Products = () => {
     let { page } = useParams();
+    const [queryParams, setQueryParams] = useSearchParams();
 
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(null);
@@ -42,13 +43,32 @@ const Products = () => {
         }
     }, []);
     useEffect(() => {
-        if (currentPage) getPageData();
-    }, [currentPage]);
+        if (currentPage) {
+            let categoryLink = queryParams.get('category');
+            if (categoryLink){
+                getPageCategoryData(categoryLink);
+            }else{
+                getPageData();
+            }
+        };
+    }, [currentPage, queryParams]);
 
     const getPageData = async () => {
         setIsLoading(true);
         try {
             let productDataResponse = await CallApi(AllProductsAPI(currentPage));
+            setProductData(productDataResponse.results);
+            setTotalPage(productDataResponse.total);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        };
+    };
+    const getPageCategoryData = async (categorySlug) => {
+        setIsLoading(true);
+        try {
+            let productDataResponse = await CallApi(GetCategoryProductsAPI(categorySlug, currentPage));
             setProductData(productDataResponse.results);
             setTotalPage(productDataResponse.total);
         } catch (error) {
@@ -89,7 +109,7 @@ const Products = () => {
                                 <Grid container direction="column">
                                     <Grid container direction="row" spacing={3} className={classes.products}>
                                         {productData.map((item, index) => (
-                                            <Product key={`productall_${index}`} title={item.name} link={item.slug} description={item.short_description} image={item.image} price={item.price} />
+                                            <Product key={`productall_${index}`} title={item.name} link={item.slug} description={item.short_description} image={item.image} price={item.price} category={queryParams.get('category')} />
                                         ))}
                                     </Grid>
                                     {(totalPage && totalPage !== 1) &&

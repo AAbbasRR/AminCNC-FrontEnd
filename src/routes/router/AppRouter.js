@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { ProtectedRoute } from '../protectedRoute/ProtectedRoute';
 
+import Page404 from '../../containers/page404/Page404';
+import ZarinpalPayment from '../../containers/zarinpalPayment/ZarinpalPayment';
 import Home from '../../containers/home/Home';
 import Products from '../../containers/products/Products';
 import FrequentlyQuestions from '../../containers/frequentlyQuestions/FrequentlyQuestions';
@@ -17,6 +19,18 @@ import History from '../../accounting/history/History';
 
 const AppRouter = () => {
     const routes = [
+        {
+            path: '*',
+            component: <Page404 />,
+            protected: false,
+            exact: false,
+        },
+        {
+            path: '/paymentStatus/zarinpal',
+            component: <ZarinpalPayment />,
+            protected: false,
+            exact: true,
+        },
         {
             path: '/',
             component: <Home />,
@@ -101,10 +115,10 @@ const AppRouter = () => {
             {routes.map((element, index) => (
                 <>
                     <Route key={`approutes_${index}`} exact={element.exact} path={element.path} element={element.protected ?
-                    <ProtectedRoute>
-                        {element.component}
-                    </ProtectedRoute>
-                    :
+                        <ProtectedRoute>
+                            {element.component}
+                        </ProtectedRoute>
+                        :
                         element.component
                     } />
                 </>

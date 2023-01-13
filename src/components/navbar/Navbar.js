@@ -12,12 +12,16 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -25,14 +29,23 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     const userData = useSelector(state => state.UserReducer);
     const cartData = useSelector(state => state.CartProductReducer);
+    const categoriesData = useSelector(state => state.CategoriesReducer);
 
     const [anchorElNav, setAnchorElNav] = useState(false);
+    const [openMegaMenu, setOpenMegaMenu] = useState(null);
+    const open = Boolean(openMegaMenu);
 
     const handleOpenNavMenu = () => {
         setAnchorElNav(true);
     };
     const handleCloseNavMenu = () => {
         setAnchorElNav(false);
+    };
+    const handleClickOpenMegaMenu = (event) => {
+        setOpenMegaMenu(event.currentTarget);
+    };
+    const handleCloseOpenMegaMenu = () => {
+        setOpenMegaMenu(null);
     };
 
     const pages = [{
@@ -42,7 +55,7 @@ const Navbar = () => {
     }, {
         title: "محصولات",
         link: "/products",
-        externalLink: false
+        megaMenu: categoriesData && categoriesData,
     }, {
         title: "محصول سفارشی",
         link: "/optinal_product",
@@ -97,14 +110,55 @@ const Navbar = () => {
                     <Box className={classes.menuItemsBox} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (
                             <>
-                                {page.externalLink ?
-                                    <a key={`navbar_${index}`} className={`link ${classes.menuItem}`} href={page.link}>
-                                        {page.title}
-                                    </a>
+                                {page.megaMenu ?
+                                    <>
+                                        <Button
+                                            id="basic-button"
+                                            aria-controls={open ? 'basic-menu' : undefined}
+                                            aria-haspopup="true"
+                                            aria-expanded={open ? 'true' : undefined}
+                                            onClick={handleClickOpenMegaMenu}
+                                            className={`link ${classes.menuItem}`}
+                                        >
+                                            {page.title}
+                                            <ArrowDropDownIcon />
+                                        </Button>
+                                        <Menu
+                                            id="basic-menu"
+                                            anchorEl={openMegaMenu}
+                                            open={open}
+                                            onClose={handleCloseOpenMegaMenu}
+                                            MenuListProps={{
+                                                'aria-labelledby': 'basic-button',
+                                            }}
+
+                                        >
+                                            <MenuItem>
+                                                <Link className={`link ${classes.menuItemMega}`} to={page.link}>
+                                                    {`کل ${page.title}`}
+                                                </Link>
+                                            </MenuItem>
+                                            {page.megaMenu.map((menuItem, index) => (
+                                                <MenuItem>
+                                                    <Link key={`megamenu_${index}`} className={`link ${classes.menuItemMega}`} to={`/products/?category=${menuItem.slug}`}>
+                                                        {menuItem.name}
+                                                    </Link>
+                                                </MenuItem>
+                                            ))}
+                                        </Menu>
+                                    </>
                                     :
-                                    <Link key={`navbar_${index}`} className={`link ${classes.menuItem}`} to={page.link}>
-                                        {page.title}
-                                    </Link>
+                                    <>
+                                        {page.externalLink ?
+                                            <a key={`navbar_${index}`} className={`link ${classes.menuItem}`} href={page.link}>
+                                                {page.title}
+                                            </a>
+                                            :
+                                            <Link key={`navbar_${index}`} className={`link ${classes.menuItem}`} to={page.link}>
+                                                {page.title}
+                                            </Link>
+                                        }
+                                    </>
                                 }
                             </>
                         ))}
@@ -124,7 +178,7 @@ const Navbar = () => {
                                 </Link>
                             </>
                             :
-                            <Link className={`link ${classes.menuToolItem} ${classes.menuItem}`} to='/auth/register' >
+                            <Link className={`link ${classes.menuToolItem} ${classes.menuItem}`} to='/auth/login' >
                                 <HowToRegIcon fontSize="small" className={classes.menuIcon} />
                                 ورود/ثبت نام
                             </Link>

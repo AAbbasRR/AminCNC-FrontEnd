@@ -47,7 +47,7 @@ import Navbar from '../components/navbar/Navbar';
 import Price from '../../components/price/Price';
 import SelectItem from '../../components/input/SelectItem';
 
-import { removeProductFromCartAction, resetAction } from '../../redux/actions/CartProductActions';
+import { removeProductFromCartAction } from '../../redux/actions/CartProductActions';
 
 import { UserAddressesListAPI } from '../../api/User';
 import { DeliveryModesListAPI, SubmitOrderAPI } from '../../api/Order';
@@ -181,10 +181,9 @@ const Cart = () => {
         setIsLoading(true);
         try {
             if (deliveryModeData.selected && addressesData.selected) {
-                CallApi(SubmitOrderAPI(reduxCartData, orderDescription, addressesData.selected.value, deliveryModeData.selected.value));
                 unshowSubmitCartDialogHandler();
-                enqueueSnackbar("سفارش شما با موفقیت ثبت شد", { variant: "success" });
-                reduxDispatch(resetAction());
+                let response = await CallApi(SubmitOrderAPI(reduxCartData, orderDescription, addressesData.selected.value, deliveryModeData.selected.value));
+                window.location.replace(response.result);
             } else {
                 if (!deliveryModeData.selected) {
                     enqueueSnackbar("لطفا نوع ارسال سفارش را انتخاب کنید", { variant: "error" });

@@ -35,24 +35,29 @@
     align-items: center;
 }
 
+.menuItem, .menuItemMega {
+    padding: 0rem 0.75rem !important;
+    box-sizing: border-box !important;
+    color: #56459d !important;
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    transition: 0.3s !important;
+    font-size: 1rem !important;
+}
+
 .menuItem {
-    padding: 0rem 0.75rem;
-    box-sizing: border-box;
-    border-left: 0.5px solid #95d0d3;
-    color: #56459d;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: 0.3s;
+    border-left: 0.5px solid #95d0d3 !important;
 }
 
 .menuItem:last-child {
-    border-left: 0px;
+    border-left: 0px !important;
 }
 
-.menuItem:hover {
-    color: #95d0d3;
-    transition: 0.3s;
+.menuItem:hover, .menuItemMega:hover {
+    color: #95d0d3 !important;
+    transition: 0.3s !important;
+    background-color: transparent !important;
 }
 
 .menuToolItem {

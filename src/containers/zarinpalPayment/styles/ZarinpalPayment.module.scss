@@ -1,0 +1,70 @@
+.main {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    flex-grow: 1;
+    min-height: 100%;
+    padding-top: 3rem;
+}
+
+.box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 3rem;
+    background: #f7f7f7;
+    border-radius: 0.8rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1rem;
+}
+
+.box:before {
+    background: linear-gradient(-135deg, #ffffff 11px, transparent 0), linear-gradient(135deg, #ffffff 11px, transparent 0);
+    background-position: left-top;
+    background-repeat: repeat-x;
+    background-size: 22px 22px;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 22px;
+}
+
+.box:after {
+    background: linear-gradient(-45deg, #ffffff 11px, transparent 0), linear-gradient(45deg, #ffffff 11px, transparent 0);
+    background-position: left-bottom;
+    background-repeat: repeat-x;
+    background-size: 22px 22px;
+    content: " ";
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 22px;
+}
+
+.successText{
+    color: #31fe57;
+}
+
+.errorText{
+    color: #ff3342;
+}
+
+.textFlex{
+    display: flex !important;
+}
+
+.paymentStatus{
+    width: 35%;
+    height: 35%;
+    display: flex;
+}

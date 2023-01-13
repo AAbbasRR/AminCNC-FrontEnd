@@ -11,7 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 
@@ -32,23 +32,16 @@ import { addProductToCartAction, removeProductFromCartAction } from '../../redux
 import { GetSingleProductAPI } from "../../api/Products";
 import CallApi from "../../functions/CallApi";
 
-const useQuery = () => {
-    const { search } = useLocation();
-
-    return React.useMemo(() => new URLSearchParams(search), [search]);
-};
 
 const SingleProduct = () => {
     let { slug } = useParams();
-    let query = useQuery();
-    const history = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
+    const [querySearchParams, setQuerySearchParams] = useSearchParams();
+    const history = useNavigate();
     const reduxDispatch = useDispatch();
     const reduxUserData = useSelector(state => state.UserReducer);
     const reduxCartData = useSelector(state => state.CartProductReducer);
-    const broad = [
-        { title: "محصولات", link: "/products" },
-    ];
+    const reduxCategoriesData = useSelector(state => state.CategoriesReducer);
 
     const [isLoading, setIsLoading] = useState(false);
     const [productData, setProductData] = useState(null);
@@ -56,6 +49,7 @@ const SingleProduct = () => {
     const [materialSelected, setMaterialSelected] = useState(null);
     const [reverceDiscount, setReverceDiscount] = useState(null);
     const [productInCart, setProductInCart] = useState(false);
+    const [categoryItem, setCategoryItem] = useState(null);
     const [order, setOrder] = useState({
         number: 1,
         price: "",
@@ -70,6 +64,7 @@ const SingleProduct = () => {
 
     useEffect(() => {
         getProductData();
+        getCategoryItemData();
     }, []);
     useEffect(() => {
         calculateDiscountProduct();
@@ -96,7 +91,7 @@ const SingleProduct = () => {
                     });
                 });
                 setMaterials(materialsVar);
-                let query_editMaterialId = query.get("editMaterialId");
+                let query_editMaterialId = querySearchParams.get("editMaterialId");
                 if (query_editMaterialId) {
                     setMaterialSelected(materialsVar.find(item => item.value === Number(query_editMaterialId)));
                 };
@@ -109,6 +104,15 @@ const SingleProduct = () => {
             history('/products');
         } finally {
             setIsLoading(false);
+        };
+    };
+    const getCategoryItemData = () => {
+        let categoryParam = querySearchParams.get("category");
+        if (categoryParam) {
+            let findReduxCategory = reduxCategoriesData.find(category => category.slug === categoryParam);
+            if (findReduxCategory) {
+                setCategoryItem(findReduxCategory);
+            };
         };
     };
     const materialChangeHandler = (event) => {
@@ -164,7 +168,7 @@ const SingleProduct = () => {
             };
             if (priceSeted) setOrder({
                 ...order,
-                price: order.number * materialSelected.price,
+                price: materialSelected ? order.number * materialSelected.price : "",
                 discountStatus: false,
                 discountPrice: null,
                 preparationTime: preparation,
@@ -214,10 +218,18 @@ const SingleProduct = () => {
                     <Grid item className={classes.container}>
                         {productData &&
                             <Container maxWidth="lg">
-                                <Breadcrumb items={[
-                                    { title: "محصولات", link: "/products" },
-                                    { title: productData.name, },
-                                ]} />
+                                {categoryItem ?
+                                    <Breadcrumb items={[
+                                        { title: "محصولات", link: "/products" },
+                                        { title: categoryItem.name, link: `/products?category=${categoryItem.slug}` },
+                                        { title: productData.name, },
+                                    ]} />
+                                    :
+                                    <Breadcrumb items={[
+                                        { title: "محصولات", link: "/products" },
+                                        { title: productData.name, },
+                                    ]} />
+                                }
                                 <Grid container direction="row" spacing={2} className={classes.component}>
                                     <Grid item xs={12} sm={4}>
                                         <ProductImageGallery

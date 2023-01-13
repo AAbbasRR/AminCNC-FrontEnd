@@ -13,7 +13,7 @@ const Breadcrumb = ({ items }) => {
                 صفحه اصلی
             </Link>
             {items.map((item) => (
-                <>
+                <div>
                     {item.link ?
                         <Link
                             underline="hover"
@@ -27,7 +27,7 @@ const Breadcrumb = ({ items }) => {
                             {item.title}
                         </Typography>
                     }
-                </>
+                </div>
             ))}
         </Breadcrumbs>
     );

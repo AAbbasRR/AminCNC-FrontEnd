@@ -1,0 +1,25 @@
+.main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    flex-grow: 1;
+    min-height: 100%;
+}
+
+.box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.page404Image{
+    margin-top: 50px;
+    display: inline-block;
+    max-width: 100%;
+    width: 560px;
+}
+
+.backToMainBtn{
+    margin-top: 3px;
+}
